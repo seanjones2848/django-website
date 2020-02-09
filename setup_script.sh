@@ -4,7 +4,7 @@
 # Setup script to install environment, and user to run and host site
 
 # Vars to keep track
-WEB_NAME=django-website
+WEB_NAME=djangowebsite
 WEB_ROOT=/web/$WEB_NAME
 USER=webling
 GROUP=web
@@ -44,10 +44,10 @@ sudo supervisorctl restart $WEB_NAME
 
 # Setup nginx
 sudo cp $WEB_ROOT/nginx/$WEB_NAME /etc/nginx/sites-available/$WEB_NAME
-sudo ln -s /etc/nginx/sites-available/$WEB_ROOT /etc/nginx/sites-enabled/$WEB_ROOT
+sudo ln -s /etc/nginx/sites-available/$WEB_NAME /etc/nginx/sites-enabled/$WEB_NAME
 sudo rm /etc/nginx/sites-enabled/default
 sudo service nginx restart
 
 # Setup certrs for HTTPS traffic
-sudo certbot --nginx -d slothbox.vip -m seanjones2848@gmail.com --agree-tos -n --redirect
+sudo certbot --nginx -d $DOMAIN -m seanjones2848@gmail.com --agree-tos -n --redirect
 

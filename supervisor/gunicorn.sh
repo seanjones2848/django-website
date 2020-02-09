@@ -1,13 +1,13 @@
 #!/bin/bash
 
-NAME="django-website"                                       # Name of the application
+NAME="djangowebsite"                                       # Name of the application
 DJANGODIR=/web/django-website                               # Django project directory
 SOCKFILE=/web/django-website/run/gunicorn.sock              # Communiction socket
 USER=webling                                                # Dedicated django user
 GROUP=web                                                   # The group to run as
 NUM_WORKERS=3                                               # How many processes Gunicorn should spawn (2*CPUs+1)
-DJANGO_SETTINGS_MODULE=django-website.settings              # Which settings to use
-DJANGO_WSGI_MODULE=django-website.wsgi                      # WSGI module name
+DJANGO_SETTINGS_MODULE=djangowebsite.settings              # Which settings to use
+DJANGO_WSGI_MODULE=djangowebsite.wsgi                      # WSGI module name
 
 echo "Starting $NAME as `whoami`"
 
