@@ -4,8 +4,9 @@
 # Setup script to install environment, and user to run and host site
 
 # Vars to keep track
+REPO_NAME=django-website
 WEB_NAME=djangowebsite
-WEB_ROOT=/web/$WEB_NAME
+WEB_ROOT=/web/$REPO_NAME
 USER=webling
 GROUP=web
 DOMAIN=slothbox.vip
