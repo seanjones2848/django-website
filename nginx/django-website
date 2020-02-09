@@ -1,0 +1,45 @@
+# Nginx config file
+
+upstream gunicorn_upstream {
+    # Always retry upstream even if it failed to return good HTTP response
+    # fail_timeout=0
+    server unix:/web/django-website/run/gunicorn.sock fail_timeout=0;
+}
+
+server {
+
+    listen 80;
+    server_name slothbox.vip;
+
+    client_max_body_size 4G;
+
+    access_log /web/django-website/logs/nginx-access.log;
+    error_log /web/django-website/logs/nginx-error.log;
+
+    location /static/ {
+        alias /web/django-website/website_static/;
+    }
+
+    location / {
+        # Sets header to indicate this is a forwarding server
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        # Enable for HTTPS access
+        proxy_set_header X-Forwarded-Proto https;
+
+        # Pass the header along so redirects can happen in application
+        proxy_set_header Host $http_host;
+
+        # Turn off Nginx native redirects in liu of our own above
+        proxy_redirect off;
+
+        # Turn on only if there are only fast clients could need it for Gunicorn
+        #proxy_buffering off;
+
+        # Serve files from nginx directly without having to touch gunicorn
+        if (!-f $request_filename) {
+            proxy_pass http://gunicorn_upstream;
+            break;
+        }
+    }
+}
