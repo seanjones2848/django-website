@@ -50,5 +50,5 @@ sudo rm /etc/nginx/sites-enabled/default
 sudo service nginx restart
 
 # Setup certrs for HTTPS traffic
-sudo certbot --nginx -d $DOMAIN -m seanjones2848@gmail.com --agree-tos -n --redirect
+sudo certbot --nginx -d $DOMAIN -d www.$DOMAIN -m seanjones2848@gmail.com --agree-tos -n --redirect
 

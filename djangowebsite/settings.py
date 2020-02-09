@@ -25,7 +25,10 @@ SECRET_KEY = 'v+(9oo_7nvte2+e6^6cs_w*7q!r4x!=%g7a&gojqgw^f04szrq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	'slothbox.vip',
+	'www.slothbox.vip',
+]
 
 
 # Application definition
